@@ -1,5 +1,7 @@
 package menu;
 
+import restaurant.Restaurant;
+
 public class Menu {
     private Restaurant restaurant;
     private String name;

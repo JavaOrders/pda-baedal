@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaOrders.iml" filepath="$PROJECT_DIR$/JavaOrders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pda-baedal.iml" filepath="$PROJECT_DIR$/pda-baedal.iml" />
       <module fileurl="file://$PROJECT_DIR$/untitled.iml" filepath="$PROJECT_DIR$/untitled.iml" />
     </modules>
   </component>
