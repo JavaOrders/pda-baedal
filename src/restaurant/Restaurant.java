@@ -7,6 +7,11 @@ public class Restaurant {
     private String name;
     private List<Menu> menus;
 
+    Restaurant(String name, List<Menu> menus) {
+        this.name = name;
+        this.menus = menus;
+    }
+
     public String getName() {
         return name;
     }
