@@ -8,24 +8,15 @@ import java.util.Map;
 public class MenuDAO {
     Map<Integer, Menu> menuDB = new HashMap<Integer, Menu>();
 
-    public List<Menu> create(String restaurantName, List<HashMap<String, Integer>> menus) {
-        List<Menu> menuList = new ArrayList<>();
-        for (HashMap<String, Integer> menuMap : menus) {
-            for (Map.Entry<String, Integer> entry : menuMap.entrySet()) {
-                String menuName = entry.getKey();
-                int menuPrice = entry.getValue();
-                Menu menu = new Menu(restaurantName, menuName, menuPrice);
-                menuList.add(menu);
-            }
-        }
-        save(menuList);
-        return menuList;
+    public List<Menu> create(List<Menu> menus) {
+        return save(menus);
     }
 
-    private void save(List<Menu> menus) {
+    private List<Menu> save(List<Menu> menus) {
         int pk = menuDB.size();
         for (Menu menu : menus) {
             menuDB.put(pk++, menu);
         }
+        return menus;
     }
 }
