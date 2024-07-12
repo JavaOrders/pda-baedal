@@ -12,7 +12,8 @@ public class RestaurantService {
 
     public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menu) {
         List<Menu> menus = menuService.getNewMenus(name, menu);
-        return restaurantDAO.save(name, menus);
+        Restaurant restaurant = new Restaurant(name, menus);
+        return restaurantDAO.save(restaurant);
     }
 
 }
