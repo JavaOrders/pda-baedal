@@ -10,10 +10,11 @@ public class RestaurantDAO {
     HashMap<Integer, Restaurant> restaurants = new HashMap<>();
 
     //가게 이름을 저장할 함수
-    public void save(String name, List<Menu> menus) {
+    public Restaurant save(String name, List<Menu> menus) {
         Restaurant restaurant = new Restaurant(name, menus);
         int pk = restaurants.size();
         restaurants.put(pk, restaurant);
+        return restaurant;
     }
 
 

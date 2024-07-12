@@ -1,11 +1,14 @@
 package restaurant;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class RestaurantController {
 
     RestaurantService restaurantService = new RestaurantService();
 
-    public void openRestaurant(String name) {
-        restaurantService.openRestaurant(name);
+    public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menus) {
+        return restaurantService.openRestaurant(name, menus);
     }
 
 }
