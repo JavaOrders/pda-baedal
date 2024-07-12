@@ -32,6 +32,11 @@ public class InitRestaurantMenu {
         Restaurant sooyeonRestaurant = restaurantController.openRestaurant("sooyeon", menus);
         System.out.println(sooyeonRestaurant.getName());
         System.out.println(sooyeonRestaurant.getMenus());
+
+        List<Restaurant> restaurants = restaurantController.showRestaurants();
+        for(int i=0; i<restaurants.size(); ++i){
+            System.out.println((i+1)+"번: "+restaurants.get(i).getName()+"가게");
+        }
     }
 
 }
