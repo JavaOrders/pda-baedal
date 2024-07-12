@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import menu.Menu;
@@ -7,14 +8,17 @@ import menu.Menu;
 public class RestaurantDAO {
 
     //레스토랑 리스트를 해쉬맵으로 선언
-    HashMap<Integer, Restaurant> restaurants = new HashMap<>();
+    HashMap<Integer, Restaurant> restaurantDB = new HashMap<>();
 
     //가게를 저장할 함수
     public Restaurant save(Restaurant restaurant) {
-        int pk = restaurants.size();
-        restaurants.put(pk, restaurant);
+        int pk = restaurantDB.size();
+        restaurantDB.put(pk, restaurant);
         return restaurant;
     }
 
 
+    public List<Restaurant> findAll() {
+        return new ArrayList<>(restaurantDB.values());
+    }
 }

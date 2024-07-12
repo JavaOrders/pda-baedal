@@ -16,4 +16,8 @@ public class RestaurantService {
         return restaurantDAO.save(restaurant);
     }
 
+    public List<Restaurant> showRestaurants() {
+        return restaurantDAO.findAll();
+    }
+
 }
