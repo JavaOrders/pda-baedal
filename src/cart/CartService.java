@@ -37,6 +37,7 @@ public class CartService {
         Cart currentCart = cartDAO.get(cart);
         if (currentCart.isContainsMenu(menu)) {
             currentCart.removeMenu(menu);
+            calcTotalPrice(cart);
             return true;
         }
         return false;
