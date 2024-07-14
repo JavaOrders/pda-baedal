@@ -6,7 +6,6 @@ import user.service.CustomerService;
 
 public class CustomerController {
     private CustomerService customerService = new CustomerService();
-    private UserView userView = new UserView();
 
     public String signUp(String signUpInfo) throws IOException {
         String response;
