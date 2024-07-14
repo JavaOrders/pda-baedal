@@ -33,6 +33,15 @@ public class CartService {
         }
     }
 
+    public boolean removeMenu(Menu menu, Cart cart) {
+        Cart currentCart = cartDAO.get(cart);
+        if (currentCart.isContainsMenu(menu)) {
+            currentCart.removeMenu(menu);
+            return true;
+        }
+        return false;
+    }
+
     public void calcTotalPrice(Cart cart) {
         Cart currentCart = cartDAO.get(cart);
         List<Menu> currentMenuList = currentCart.getMenus();

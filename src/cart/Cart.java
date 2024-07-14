@@ -31,4 +31,12 @@ public class Cart {
     public void addMenu(Menu menu) {
         menus.add(menu);
     }
+
+    public void removeMenu(Menu menu) {
+        menus.remove(menu);
+    }
+
+    public boolean isContainsMenu(Menu menu) {
+        return menus.contains(menu);
+    }
 }

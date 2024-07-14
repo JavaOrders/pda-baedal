@@ -11,3 +11,10 @@ public class CartView {
         }
     }
 
+    public void displayMenuRemovedMessage(boolean isMenuRemoved) {
+        if (isMenuRemoved) {
+            System.out.println("장바구니에서 삭제 성공!");
+        } else {
+            System.out.println("장바구니에서 삭제에 실패하였습니다.");
+        }
+    }
