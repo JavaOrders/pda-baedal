@@ -1,32 +1,23 @@
 package restaurant;
-
-import java.util.HashMap;
 import java.util.List;
 import menu.Menu;
 
 public class RestaurantController {
 
-    RestaurantService restaurantService = new RestaurantService();
+    private RestaurantService restaurantService;
 
-    public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menus) {
-        return restaurantService.openRestaurant(name, menus);
+    public RestaurantController() {
+        this.restaurantService = new RestaurantService();
     }
 
-    //    레스토랑 리스트 조회
-    public List<Restaurant> showRestaurants() {
-        return restaurantService.showRestaurants();
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantService.getAllRestaurants();
     }
 
-    //    하나의 레스토랑 조회
-    public Restaurant showRestaurant(int id) {
-        return restaurantService.showRestaurant(id);
+    public Restaurant getRestaurantByName(String name) {
+        return restaurantService.getRestaurantByName(name);
     }
 
-    //    하나의 레스토랑에 해당하는 메뉴들 조회
-    public List<Menu> showMenusByRestaurantName(String restaurantName) {
-        return restaurantService.showMenusByRestaurantName(restaurantName);
-    }
 
-//    주문받기
 
 }

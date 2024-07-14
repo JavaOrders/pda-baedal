@@ -1,27 +1,17 @@
 package cart;
-
 import menu.Menu;
-
 public class CartController {
-    private static final CartService cartService = new CartService();
-    private static final CartView cartView = new CartView();
+    private CartService cartService;
 
-    public void addMenu(Menu menu, Cart cart) {
-        boolean isMenuAdded = cartService.addMenu(menu, cart);
-        cartView.displayMenuAddedMessage(isMenuAdded);
+    public CartController(CartView cartView) {
+        this.cartService = new CartService(cartView);
     }
 
-    public void clear(Cart cart) {
-        cartService.clear(cart);
-        cartView.displayClearMessage();
+    public void addMenuToCart(Menu menu) {
+        cartService.addMenuToCart(menu);
     }
 
-    public void removeMenu(Menu menu, Cart cart) {
-        boolean isMenuRemoved = cartService.removeMenu(menu, cart);
-        cartView.displayMenuRemovedMessage(isMenuRemoved);
-    }
-
-    public void createCart(Cart cart) {
-        cartService.createCart(cart);
+    public Cart getCart() {
+        return cartService.getCart();
     }
 }

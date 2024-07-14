@@ -1,30 +1,18 @@
 package cart;
-
+import java.util.ArrayList;
 import java.util.List;
 import menu.Menu;
 import restaurant.Restaurant;
 
 public class Cart {
-    private Restaurant restaurant;
-    private List<Menu> menus;
     private int totalPrice;
+    private List<Menu> menus;
+    private List<Restaurant> restaurants;
 
-    public Cart(Restaurant restaurant, List<Menu> menus, int totalPrice) {
-        this.restaurant = restaurant;
-        this.menus = menus;
-        this.totalPrice = totalPrice;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public List<Menu> getMenus() {
-        return menus;
+    public Cart() {
+        this.totalPrice = 0; // 초기값 설정
+        this.menus = new ArrayList<>();
+        this.restaurants = new ArrayList<>();
     }
 
     public int getTotalPrice() {
@@ -35,19 +23,19 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public void addMenu(Menu menu) {
-        menus.add(menu);
+    public List<Menu> getMenus() {
+        return menus;
     }
 
-    public void removeMenu(Menu menu) {
-        menus.remove(menu);
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 
-    public void clearMenus() {
-        menus.clear();
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
-    public boolean isContainsMenu(Menu menu) {
-        return menus.contains(menu);
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 }

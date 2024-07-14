@@ -1,31 +1,28 @@
 package restaurant;
-
-import java.util.HashMap;
 import java.util.List;
-import menu.Menu;
-import menu.MenuService;
 
 public class RestaurantService {
 
-    RestaurantDAO restaurantDAO = new RestaurantDAO();
-    MenuService menuService = new MenuService();
+    private RestaurantDao restaurantDao;
 
-    public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menu) {
-        List<Menu> menus = menuService.getNewMenus(name, menu);
-        Restaurant restaurant = new Restaurant(name, menus);
-        return restaurantDAO.save(restaurant);
+    public RestaurantService() {
+        this.restaurantDao = new RestaurantDao();
     }
 
-    public List<Restaurant> showRestaurants() {
-        return restaurantDAO.findAll();
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantDao.getAllRestaurants();
     }
 
-    public Restaurant showRestaurant(int id) {
-        return restaurantDAO.findById(id);
+
+    public Restaurant getRestaurantByName(String name) {
+        for (Restaurant restaurant : restaurantDao.getAllRestaurants()) {
+            if (restaurant.getName().equals(name)) {
+                return restaurant;
+            }
+        }
+        return null;
     }
 
-    public List<Menu> showMenusByRestaurantName(String restaurantName) {
-        return menuService.getMenus(restaurantName);
-    }
+
 
 }

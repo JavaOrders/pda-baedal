@@ -1,27 +1,29 @@
 package restaurant;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import menu.Menu;
 
-public class RestaurantDAO {
+public class RestaurantDao {
 
-    //레스토랑 리스트를 해쉬맵으로 선언
-    HashMap<Integer, Restaurant> restaurantDB = new HashMap<>();
+    private List<Restaurant> restaurants;
 
-    //가게를 저장할 함수
-    public Restaurant save(Restaurant restaurant) {
-        int pk = restaurantDB.size();
-        restaurantDB.put(pk, restaurant);
-        return restaurant;
+    public RestaurantDao() {
+        this.restaurants = new ArrayList<>();
+        // 더미 데이터
+        Restaurant restaurant1 = new Restaurant("Kim's Diner");
+        restaurant1.addMenu(new Menu("Kimchi", 10));
+        restaurant1.addMenu(new Menu("Bulgogi", 12));
+
+        Restaurant restaurant2 = new Restaurant("Lee's BBQ");
+        restaurant2.addMenu(new Menu("BBQ Chicken", 15));
+        restaurant2.addMenu(new Menu("Pork Belly", 18));
+
+        restaurants.add(restaurant1);
+        restaurants.add(restaurant2);
     }
 
-    public List<Restaurant> findAll() {
-        return new ArrayList<>(restaurantDB.values());
-    }
-
-    public Restaurant findById(int id) {
-        return restaurantDB.get(id);
+    public List<Restaurant> getAllRestaurants() {
+        return restaurants;
     }
 
 }
