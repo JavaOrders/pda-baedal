@@ -1,5 +1,6 @@
 package cart;
 
+import java.util.List;
 import menu.Menu;
 
 public class CartService {
@@ -33,5 +34,13 @@ public class CartService {
     }
 
     public void calcTotalPrice(Cart cart) {
+        Cart currentCart = cartDAO.get(cart);
+        List<Menu> currentMenuList = currentCart.getMenus();
+
+        int totalPrice = 0;
+        for (Menu menu : currentMenuList) {
+            totalPrice += menu.getPrice();
+        }
+        currentCart.setTotalPrice(totalPrice);
     }
 }
