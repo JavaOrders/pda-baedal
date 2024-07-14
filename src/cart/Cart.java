@@ -8,6 +8,12 @@ public class Cart {
     private List<Menu> menus;
     private int totalPrice;
 
+    public Cart(Restaurant restaurant, List<Menu> menus, int totalPrice) {
+        this.restaurant = restaurant;
+        this.menus = menus;
+        this.totalPrice = totalPrice;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }
