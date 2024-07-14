@@ -1,24 +1,30 @@
 package menu;
 
 public class Menu {
-    private Restaurant restaurant;
+    private String restaurantName;
     private String name;
     private int price;
     private int amount;
 
-    Menu(String name, int price, int amount, Restaurant restaurant) {
+    Menu(String restaurantName, String name, int price) {
+        this.restaurantName = restaurantName;
+        this.name = name;
+        this.price = price;
+    }
+
+    Menu(String name, int price, int amount, String restaurantName) {
         this.name = name;
         this.price = price;
         this.amount = amount;
-        this.restaurant = restaurant;
+        this.restaurantName = restaurantName;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public String getName() {
@@ -43,5 +49,10 @@ public class Menu {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        return sb.append("name: ").append(name).append(" price: ").append(price).append(" \n").toString();
     }
 }

@@ -1,70 +1,48 @@
 package order;
 
-import menu.Menu;
-import java.util.ArrayList;
+import Customer.Customer;
+import cart.Cart;
 import java.util.List;
-import user.domain.Customer;
+import menu.Menu;
+import restaurant.Restaurant;
 
 public class Order {
-    private static final int ORDER = 1;
-    private static long orderIdCounter = 1;
-
-    private long orderId = orderIdCounter++;
     private Customer customer;
-    private List<Menu> menus = new ArrayList<>();
-    private int orderStatus;
-    private int totalPrice;
+    private Restaurant restaurant;
+    private List<Menu> menus;
+    private int totalPrice;// 인스턴스 변수로 수정
+    private int orderKey;
 
-    public void setCustomer(Customer customer) {
+    public Order(Cart cart, Customer customer, int key) {
         this.customer = customer;
-        customer.getOrderHistory().add(this);
+        this.restaurant = cart.getRestaurant();
+        this.menus = cart.getMenus();
+        this.totalPrice = cart.getTotalPrice();
+        this.orderKey = key;
     }
 
-    public void addOrderMenu(Menu menu) {
-        menus.add(menu);
+    public int getOrderKey() {
+        return orderKey;
     }
 
-    public static Order createOrder(Customer customer) {
-        Order order = new Order();
-        order.setCustomer(customer);
-        List<Menu> menus = customer.getMyCart().getMenus();
+    public String getCustomer() {
+        return customer.getName();
+    }
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public String getMenus() {
+        StringBuilder menuList = new StringBuilder();
         for (Menu menu : menus) {
-            order.addOrderMenu(menu);
-            //TODO: should seperate calcTotalPrice Logic
-            order.setTotalPrice(order.getTotalPrice() + menu.getPrice());
+            menuList.append(menu.getName()).append(", ");
         }
-        order.setOrderStatus(ORDER);
-
-        return order;
-    }
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public List<Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(List<Menu> menus) {
-        this.menus = menus;
-    }
-
-    public int getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(int orderStatus) {
-        this.orderStatus = orderStatus;
+        // Remove the trailing comma and space if there are any menus
+        if (menuList.length() > 0) {
+            menuList.setLength(menuList.length() - 2);
+        }
+        return menuList.toString();
     }
 
     public int getTotalPrice() {

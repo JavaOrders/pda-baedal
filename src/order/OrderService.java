@@ -1,20 +1,15 @@
 package order;
 
-import user.UserDAO;
-import user.domain.Customer;
+import Customer.Customer;
+import cart.Cart;
+import java.util.UUID;
 
 public class OrderService {
 
-    private OrderDAO orderDAO = new OrderDAO();
-    private UserDAO userDAO= new UserDAO();
-
-    public Long order(String id) {
-
-        Customer customer = userDAO.findById(id);
-
-        Order order = Order.createOrder(customer);
-        orderDAO.save(order);
-
-        return order.getOrderId();
+    public Order addOrder(Cart cart, Customer customer) {
+        int orderId = UUID.randomUUID().hashCode();
+        Order order = new Order(cart, customer, orderId);
+        OrderDAO orderDAO = new OrderDAO();
+        return orderDAO.save(order);
     }
 }
