@@ -1,7 +1,6 @@
 package cart;
 
 public class CartView {
-}
     public void displayMenuAddedMessage(boolean isMenuAdded) {
         if (isMenuAdded) {
             System.out.println("장바구니에 담기 성공!");
@@ -22,3 +21,4 @@ public class CartView {
     public void displayClearMessage() {
         System.out.println("장바구니가 비워졌습니다.");
     }
+}
