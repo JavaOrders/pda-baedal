@@ -1,29 +1,41 @@
 package user.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+//import order.Order;
+
 public class Customer extends Person{
     private static final int CUSTOMER = 1;
 
-    private Cart myCart;
+    //private Cart myCart;
     private long totalExpennse;
-    private List<Order> orderHistory;
+    //private List<Order> orderHistory;
     private String id;
-    private String pw;
+    private String password;
 
     public Customer(String id, String password, String name) {
         super(name,CUSTOMER);
-        myCart = new Cart();
-        orderHistory = new ArrayList<Order>();
+        //myCart = new Cart();
+        //orderHistory = new ArrayList<Order>();
         this.id = id;
-        this.pw = password;
+        this.password = password;
     }
 
-    public Cart getMyCart() {
-        return myCart;
+    public String getId() {
+        return id;
     }
 
-    public void setMyCart(Cart myCart) {
-        this.myCart = myCart;
+    public String getPassword() {
+        return password;
     }
+
+//    public Cart getMyCart() {
+//        return myCart;
+//    }
+//
+//    public void setMyCart(Cart myCart) {
+//        this.myCart = myCart;
+//    }
 
     public long getTotalExpennse() {
         return totalExpennse;
@@ -33,11 +45,11 @@ public class Customer extends Person{
         this.totalExpennse = totalExpennse;
     }
 
-    public List<Order> getOrderHistory() {
-        return orderHistory;
-    }
-
-    public void setOrderHistory(List<Order> orderHistory) {
-        this.orderHistory = orderHistory;
-    }
+//    public List<Order> getOrderHistory() {
+//        return orderHistory;
+//    }
+//
+//    public void setOrderHistory(List<Order> orderHistory) {
+//        this.orderHistory = orderHistory;
+//    }
 }
