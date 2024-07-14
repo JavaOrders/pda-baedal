@@ -3,7 +3,6 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import menu.Menu;
 
 public class RestaurantDAO {
 
@@ -17,8 +16,12 @@ public class RestaurantDAO {
         return restaurant;
     }
 
-
     public List<Restaurant> findAll() {
         return new ArrayList<>(restaurantDB.values());
     }
+
+    public Restaurant findById(int id) {
+        return restaurantDB.get(id);
+    }
+
 }

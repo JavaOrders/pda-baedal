@@ -22,4 +22,7 @@ public class MenuService {
         return menuDao.create(menus);
     }
 
+    public List<Menu> getMenus(String restaurantName) {
+        return menuDao.getMenus(restaurantName);
+    }
 }

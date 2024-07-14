@@ -1,9 +1,9 @@
 package menu;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MenuDAO {
     Map<Integer, Menu> menuDB = new HashMap<Integer, Menu>();
@@ -18,5 +18,10 @@ public class MenuDAO {
             menuDB.put(pk++, menu);
         }
         return menus;
+    }
+
+    public List<Menu> getMenus(String restaurantName) {
+        return menuDB.values().stream().filter(menu -> menu.getRestaurantName().equals(restaurantName)).collect(
+                Collectors.toList());
     }
 }

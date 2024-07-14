@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import menu.Menu;
 import restaurant.Restaurant;
 import restaurant.RestaurantController;
 
@@ -34,9 +35,22 @@ public class InitRestaurantMenu {
         System.out.println(sooyeonRestaurant.getMenus());
 
         List<Restaurant> restaurants = restaurantController.showRestaurants();
-        for(int i=0; i<restaurants.size(); ++i){
-            System.out.println((i+1)+"번: "+restaurants.get(i).getName()+"가게");
+        for (int i = 0; i < restaurants.size(); ++i) {
+            System.out.println((i + 1) + "번: " + restaurants.get(i).getName() + "가게");
+        }
+
+        int restaurantId = 0; // 채윤가게
+        Restaurant restaurant = restaurantController.showRestaurant(restaurantId);
+        if (restaurant != null) {
+            System.out.println(restaurantId + "번: " + restaurant.getName() + "가게");
+            List<Menu> restaurantMenus = restaurantController.showMenusByRestaurantName(restaurant.getName());
+            for (Menu m : restaurantMenus) {
+                System.out.println(m.getName() + ": " + m.getPrice() + "원");
+            }
+        } else {
+            System.out.println(restaurantId + "번 가게 없음");
         }
     }
+
 
 }

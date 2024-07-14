@@ -20,4 +20,12 @@ public class RestaurantService {
         return restaurantDAO.findAll();
     }
 
+    public Restaurant showRestaurant(int id) {
+        return restaurantDAO.findById(id);
+    }
+
+    public List<Menu> showMenusByRestaurantName(String restaurantName) {
+        return menuService.getMenus(restaurantName);
+    }
+
 }
