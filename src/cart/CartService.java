@@ -52,4 +52,11 @@ public class CartService {
         }
         currentCart.setTotalPrice(totalPrice);
     }
+
+    public void clear(Cart cart) {
+        Cart currentCart = cartDAO.get(cart);
+        currentCart.setRestaurant(null);
+        currentCart.clearMenus();
+        currentCart.setTotalPrice(0);
+    }
 }

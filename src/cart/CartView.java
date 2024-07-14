@@ -18,3 +18,7 @@ public class CartView {
             System.out.println("장바구니에서 삭제에 실패하였습니다.");
         }
     }
+
+    public void displayClearMessage() {
+        System.out.println("장바구니가 비워졌습니다.");
+    }

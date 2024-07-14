@@ -36,6 +36,10 @@ public class Cart {
         menus.remove(menu);
     }
 
+    public void clearMenus() {
+        menus.clear();
+    }
+
     public boolean isContainsMenu(Menu menu) {
         return menus.contains(menu);
     }
