@@ -27,4 +27,8 @@ public class Cart {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public void addMenu(Menu menu) {
+        menus.add(menu);
+    }
 }
