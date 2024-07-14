@@ -2,6 +2,7 @@ package cart;
 
 import java.util.List;
 import menu.Menu;
+import restaurant.Restaurant;
 
 public class Cart {
     private Restaurant restaurant;
