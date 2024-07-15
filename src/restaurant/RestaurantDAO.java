@@ -24,4 +24,8 @@ public class RestaurantDAO {
         return restaurantDB.get(id);
     }
 
+    public Restaurant findByName(String name) {
+        return restaurantDB.values().stream().filter(restaurant -> restaurant.getName().equals(name)).findFirst()
+                .orElse(null);
+    }
 }

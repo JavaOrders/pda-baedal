@@ -11,9 +11,21 @@ public class RestaurantService {
     MenuService menuService = new MenuService();
 
     public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menu) {
+        if (isExist(name)) {
+            return null;
+        }
         List<Menu> menus = menuService.getNewMenus(name, menu);
         Restaurant restaurant = new Restaurant(name, menus);
         return restaurantDAO.save(restaurant);
+    }
+
+    private boolean isExist(String name) {
+        Restaurant restaurant = getRestaurant(name);
+        return restaurant != null;
+    }
+
+    public Restaurant getRestaurant(String name) {
+        return restaurantDAO.findByName(name);
     }
 
     public List<Restaurant> showRestaurants() {
