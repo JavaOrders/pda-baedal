@@ -12,9 +12,7 @@ public class Order {
     private List<Menu> menus;
     private int totalPrice;// 인스턴스 변수로 수정
     private int orderKey;
-
-    public Order() {
-    }
+    private boolean status;
 
     public Order(Cart cart, Customer customer, int key) {
         this.customer = customer;
@@ -36,6 +34,11 @@ public class Order {
         return restaurant;
     }
 
+    public List<Menu> getMenuList() {
+        return menus;
+    }
+
+
     public String getMenus() {
         StringBuilder menuList = new StringBuilder();
         for (Menu menu : menus) {
@@ -56,7 +59,12 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public List<Menu> getMenuList() {
-        return menus;
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
