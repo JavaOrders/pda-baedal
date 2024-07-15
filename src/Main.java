@@ -6,9 +6,8 @@ public class Main {
         RestaurantController restaurantController = new RestaurantController();
         InitRestaurantMenu initRestaurantMenu = new InitRestaurantMenu(restaurantController);
         initRestaurantMenu.start();
-      
-        MainController mainController = new MainController();
-        MainView mainView = new MainView(mainController, restaurantController);
+
+        MainView mainView = new MainView(restaurantController);
         mainView.show();
     }
 }
