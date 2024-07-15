@@ -11,8 +11,8 @@ public class InitRestaurantMenu {
         return restaurantController;
     }
 
-    public InitRestaurantMenu() {
-        restaurantController = new RestaurantController();
+    public InitRestaurantMenu(RestaurantController restaurantController) {
+        this.restaurantController = restaurantController;
     }
 
     public void start() {

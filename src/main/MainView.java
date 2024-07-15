@@ -29,10 +29,10 @@ public class MainView {
     private final OrderController orderController = new OrderController();
 
 
-    public MainView(MainController mainController, RestaurantView restaurantView) {
+    public MainView(MainController mainController, RestaurantController restaurantController) {
         this.mainController = mainController;
-        this.restaurantView = restaurantView;
-        this.restaurantController = restaurantView.getRestaurantController();
+        this.restaurantView = restaurantController.getRestaurantView();
+        this.restaurantController = restaurantController;
     }
 
     public void show() {
@@ -63,7 +63,7 @@ public class MainView {
 
                     userInput = Integer.parseInt(reader.readLine().trim());
                     if (userInput == 1) {
-                        restaurantView.show();
+                        restaurantController.show();
                         userInput = Integer.parseInt(reader.readLine().trim());
                         Restaurant rest = restaurantController.showRestaurant(userInput);
 
@@ -71,18 +71,15 @@ public class MainView {
                             System.out.println("해당 음식점은 존재하지 않습니다.");
                         }
                         while (true) {
-//                            System.out.println("*****" + rest.getName()+" 음식점에 오신걸 환영합니다." + "*****");
                             System.out.println("0번 주문하기");
                             System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
                             List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
                             restaurantView.printMenuList(menus);
                             userInput = Integer.parseInt(reader.readLine().trim());
                             if (userInput == 0) {
-                                //주문하기
                                 orderController.addOrder(loginedId);
 
                                 System.out.println("주문 성공");
-                                //TODO:
                                 exitProgram();
                             } else {
                                 cartController.addMenu(menus.get(userInput - 1), loginedId);
