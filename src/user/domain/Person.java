@@ -1,19 +1,25 @@
 package user.domain;
 
 public abstract class Person {
-    private String name;
-    private int type;
+    public enum PersonType {
+        CUSTOMER, OWNER, RIDER
+    }
 
-    Person(String name, int type) {
+    private String name;
+    private PersonType type;
+
+    Person(String name, PersonType type) {
         this.name = name;
         this.type = type;
     }
 
     public String getName() {
         return name;
-    };
+    }
 
-    public int getType() {
+    ;
+
+    public PersonType getType() {
         return type;
     }
 }

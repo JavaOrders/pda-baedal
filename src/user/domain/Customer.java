@@ -1,12 +1,13 @@
 package user.domain;
 
+import static user.domain.Person.PersonType.CUSTOMER;
+
 import cart.Cart;
 import java.util.ArrayList;
 import java.util.List;
 import order.Order;
 
 public class Customer extends Person {
-    private static final int CUSTOMER = 1;
 
     private Cart myCart;
     private long totalExpennse;
@@ -14,7 +15,7 @@ public class Customer extends Person {
     private String id;
     private String password;
 
-    public Customer(String id, String password, String name,Cart cart) {
+    public Customer(String id, String password, String name, Cart cart) {
         super(name, CUSTOMER);
         myCart = cart;
         orderHistory = new ArrayList<Order>();
