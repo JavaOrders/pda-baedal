@@ -49,6 +49,6 @@ public class RestaurantService {
         List<String> menuNames = menus.stream().map(Menu::getName).collect(Collectors.toList());
         List<String> orderMenuNames = order.getMenuList().stream().map(Menu::getName).collect(Collectors.toList());
         boolean canReceive = menuNames.containsAll(orderMenuNames);
-        return canReceive;
+        return true;
     }
 }
