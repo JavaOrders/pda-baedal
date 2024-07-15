@@ -28,9 +28,9 @@ public class MainView {
     private final OrderController orderController = new OrderController();
 
 
-    public MainView( RestaurantView restaurantView) {
-        this.restaurantView = restaurantView;
-        this.restaurantController = restaurantView.getRestaurantController();
+    public MainView(RestaurantController restaurantController) {
+        this.restaurantView = restaurantController.getRestaurantView();
+        this.restaurantController = restaurantController;
     }
 
     public void show() {
@@ -62,7 +62,8 @@ public class MainView {
                     userInput = Integer.parseInt(reader.readLine().trim());
 
                     if (userInput == GET_RESTAURANT_LIST) {
-                        restaurantView.show();
+                        restaurantController.show();
+
                         userInput = Integer.parseInt(reader.readLine().trim());
                         Restaurant currentRestaurant = restaurantController.showRestaurant(userInput);
 
@@ -71,7 +72,8 @@ public class MainView {
                         }
                         while (true) {
                             printRestaurantIntro();
-                            List<Menu> currentRestaurantMenus = restaurantController.showMenusByRestaurantName(currentRestaurant.getName());
+                            List<Menu> currentRestaurantMenus = restaurantController.showMenusByRestaurantName(
+                                    currentRestaurant.getName());
                             restaurantView.printMenuList(currentRestaurantMenus);
                             userInput = Integer.parseInt(reader.readLine().trim());
 

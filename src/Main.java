@@ -1,13 +1,13 @@
 import main.MainView;
-import restaurant.RestaurantView;
+import restaurant.RestaurantController;
 
 public class Main {
     public static void main(String[] args) {
-        InitRestaurantMenu initRestaurantMenu = new InitRestaurantMenu();
+        RestaurantController restaurantController = new RestaurantController();
+        InitRestaurantMenu initRestaurantMenu = new InitRestaurantMenu(restaurantController);
         initRestaurantMenu.start();
 
-        RestaurantView restaurantView = new RestaurantView(initRestaurantMenu.getRestaurantController());
-        MainView mainView = new MainView(restaurantView);
+        MainView mainView = new MainView(restaurantController);
         mainView.show();
     }
 }

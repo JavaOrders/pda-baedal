@@ -7,5 +7,5 @@ public class MenuController {
         menuService = new MenuService();
     }
 
-    
+     
 }
