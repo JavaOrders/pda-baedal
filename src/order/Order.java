@@ -1,10 +1,10 @@
 package order;
 
-import Customer.Customer;
 import cart.Cart;
 import java.util.List;
 import menu.Menu;
 import restaurant.Restaurant;
+import user.domain.Customer;
 
 public class Order {
     private Customer customer;
@@ -12,6 +12,9 @@ public class Order {
     private List<Menu> menus;
     private int totalPrice;// 인스턴스 변수로 수정
     private int orderKey;
+
+    public Order() {
+    }
 
     public Order(Cart cart, Customer customer, int key) {
         this.customer = customer;

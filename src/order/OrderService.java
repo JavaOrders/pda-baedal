@@ -1,8 +1,8 @@
 package order;
 
-import Customer.Customer;
 import cart.Cart;
 import java.util.UUID;
+import user.domain.Customer;
 
 public class OrderService {
 

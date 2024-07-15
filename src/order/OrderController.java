@@ -1,7 +1,7 @@
 package order;
 
-import Customer.Customer;
 import cart.Cart;
+import user.domain.Customer;
 
 public class OrderController {
     private final OrderView orderView = new OrderView();

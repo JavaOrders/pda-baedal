@@ -1,10 +1,11 @@
 package user.domain;
 
+import cart.Cart;
 import java.util.ArrayList;
 import java.util.List;
 import order.Order;
 
-public class Customer extends Person{
+public class Customer extends Person {
     private static final int CUSTOMER = 1;
 
     private Cart myCart;
@@ -14,7 +15,7 @@ public class Customer extends Person{
     private String password;
 
     public Customer(String id, String password, String name) {
-        super(name,CUSTOMER);
+        super(name, CUSTOMER);
         myCart = new Cart();
         orderHistory = new ArrayList<Order>();
         this.id = id;
