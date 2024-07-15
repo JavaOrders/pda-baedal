@@ -2,13 +2,17 @@ package restaurant;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import menu.Menu;
+import menu.MenuDAO;
 import menu.MenuService;
+import order.Order;
 
 public class RestaurantService {
 
     RestaurantDAO restaurantDAO = new RestaurantDAO();
     MenuService menuService = new MenuService();
+    MenuDAO menuDAO = new MenuDAO();
 
     public Restaurant openRestaurant(String name, List<HashMap<String, Integer>> menu) {
         if (isExist(name)) {
@@ -40,4 +44,11 @@ public class RestaurantService {
         return menuService.getMenus(restaurantName);
     }
 
+    public boolean receiveOrder(Order order) {
+        List<Menu> menus = menuDAO.getMenus(order.getRestaurant().getName());
+        List<String> menuNames = menus.stream().map(Menu::getName).collect(Collectors.toList());
+        List<String> orderMenuNames = order.getMenuList().stream().map(Menu::getName).collect(Collectors.toList());
+        boolean canReceive = menuNames.containsAll(orderMenuNames);
+        return canReceive;
+    }
 }

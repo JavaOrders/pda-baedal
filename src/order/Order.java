@@ -55,4 +55,8 @@ public class Order {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public List<Menu> getMenuList() {
+        return menus;
+    }
 }
