@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 import menu.Menu;
 import order.OrderController;
-import order.OrderView;
 import restaurant.Restaurant;
 import restaurant.RestaurantController;
 import restaurant.RestaurantView;
@@ -68,26 +67,26 @@ public class MainView {
                         userInput = Integer.parseInt(reader.readLine().trim());
                         Restaurant rest = restaurantController.showRestaurant(userInput);
 
-                        if(rest == null) {
+                        if (rest == null) {
                             System.out.println("해당 음식점은 존재하지 않습니다.");
                         }
-                        while(true) {
+                        while (true) {
 //                            System.out.println("*****" + rest.getName()+" 음식점에 오신걸 환영합니다." + "*****");
                             System.out.println("0번 주문하기");
                             System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
                             List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
                             restaurantView.printMenuList(menus);
                             userInput = Integer.parseInt(reader.readLine().trim());
-                            if(userInput == 0) {
+                            if (userInput == 0) {
                                 //주문하기
                                 orderController.addOrder(loginedId);
 
                                 System.out.println("주문 성공");
                                 //TODO:
                                 exitProgram();
-                            }
-                            else {
-                                cartController.addMenu(menus.get(userInput-1),loginedId);
+                            } else {
+                                cartController.addMenu(menus.get(userInput - 1), loginedId);
+                                cartController.showMenuList(loginedId);
                             }
 
                         }
