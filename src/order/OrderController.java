@@ -1,8 +1,5 @@
 package order;
 
-import cart.Cart;
-import user.domain.Customer;
-
 public class OrderController {
     private final OrderView orderView = new OrderView();
     private final OrderService orderService = new OrderService();
@@ -10,7 +7,7 @@ public class OrderController {
     public void addOrder(String customerId) {
 
         Order order = orderService.addOrder(customerId);
-        orderView.printOrder(order);
+        //orderView.printOrder(order);
 
         if (order.getStatus()) {
             orderView.printOrder(order);

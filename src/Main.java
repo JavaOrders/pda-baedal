@@ -10,6 +10,5 @@ public class Main {
         RestaurantView restaurantView = new RestaurantView(initRestaurantMenu.getRestaurantController());
         MainView mainView = new MainView(mainController, restaurantView);
         mainView.show();
-
     }
 }
