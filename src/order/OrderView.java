@@ -8,4 +8,8 @@ public class OrderView {
         System.out.println("주문한 메뉴정보 " + order.getMenus());
         System.out.println("총 가격은 " + order.getTotalPrice() + "원입니다.");
     }
+
+    public void rejectOrder() {
+        System.out.println("주문 접수가 취소 되었습니다.");
+    }
 }
