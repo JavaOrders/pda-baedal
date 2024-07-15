@@ -1,5 +1,6 @@
 package cart;
 
+import java.util.List;
 import menu.Menu;
 
 public class CartController {
@@ -10,6 +11,7 @@ public class CartController {
         boolean isMenuAdded = cartService.addMenu(menu, userId);
         cartView.displayMenuAddedMessage(isMenuAdded);
     }
+
 
     public void clear(String userId) {
         cartService.clear(userId);
@@ -23,5 +25,10 @@ public class CartController {
 
     public Cart createCart() {
         return cartService.createCart();
+    }
+
+    public void showMenuList(String userId) {
+        List<Menu> menuList = cartService.getMenuList(userId);
+        cartView.displayMenuList(menuList);
     }
 }

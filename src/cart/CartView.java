@@ -1,5 +1,8 @@
 package cart;
 
+import java.util.List;
+import menu.Menu;
+
 public class CartView {
     public void displayMenuAddedMessage(boolean isMenuAdded) {
         if (isMenuAdded) {
@@ -20,5 +23,13 @@ public class CartView {
 
     public void displayClearMessage() {
         System.out.println("장바구니가 비워졌습니다.");
+    }
+
+    public void displayMenuList(List<Menu> menuList) {
+        System.out.println("---장바구니 목록---");
+        for (Menu menu : menuList) {
+            System.out.println(menu.getName());
+        }
+        System.out.println("------------------");
     }
 }

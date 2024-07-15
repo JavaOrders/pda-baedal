@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import menu.Menu;
 import restaurant.Restaurant;
 import restaurant.RestaurantController;
 
@@ -38,20 +37,46 @@ public class InitRestaurantMenu {
         menus.add(menu);
         Restaurant sooyeonRestaurant = restaurantController.openRestaurant("sooyeon", menus);
 
+        menus.clear();
+        menu.clear();
+
+        menu.put("고구마피자", 10000);
+        menu.put("콤비네이션피자", 15000);
+        menu.put("포테이토피자", 20000);
+
+        menus.add(menu);
+        Restaurant hoRestaurant = restaurantController.openRestaurant("ho", menus);
+
+        menus.clear();
+        menu.clear();
+
+        menu.put("빙그레우유", 3000);
+        menu.put("바나나우유", 3000);
+        menu.put("딸기우유", 3000);
+
+        menus.add(menu);
+        Restaurant nahyeonRestaurant = restaurantController.openRestaurant("nahyeon", menus);
+
+        menus.clear();
+        menu.clear();
+        menu.put("에스프레소", 4500);
+        menu.put("카페라떼", 5000);
+        menu.put("카페모카", 5500);
+
+        menus.add(menu);
+        Restaurant jaeinRestaurant = restaurantController.openRestaurant("jaein", menus);
+
+        menus.clear();
+        menu.clear();
+        menu.put("불고기버거", 4500);
+        menu.put("치킨버거", 4000);
+        menu.put("햄버거", 3000);
+
+        menus.add(menu);
+        Restaurant jaeukRestaurant = restaurantController.openRestaurant("jaeuk", menus);
+
         List<Restaurant> restaurants = restaurantController.showRestaurants();
 
-        int restaurantId = 0; // 채윤가게
-        Restaurant restaurant = restaurantController.showRestaurant(restaurantId);
-
-        if (restaurant != null) {
-            System.out.println(restaurantId + "번: " + restaurant.getName() + "가게");
-            List<Menu> restaurantMenus = restaurantController.showMenusByRestaurantName(restaurant.getName());
-            for (Menu m : restaurantMenus) {
-                System.out.println("1." + m.getName() + ": " + m.getPrice() + "원");
-            }
-        } else {
-            System.out.println(restaurantId + "번 가게 없음");
-        }
     }
 
 
