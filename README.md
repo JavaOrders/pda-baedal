@@ -104,7 +104,7 @@
         </td>
         <td style="min-width: 150px;">
             <ul>
-                <li>작성 예정</li>
+                <li>주문 기능</li>
             </ul>
         </td>
     </tr>
