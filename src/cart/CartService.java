@@ -60,7 +60,9 @@ public class CartService {
         currentCart.clearMenus();
         currentCart.setTotalPrice(0);
     }
-    public void createCart(Cart cart) {
-        cartDAO.save(cart);
+
+    public Cart createCart() {
+        Cart cart = new Cart();
+        return cartDAO.save(cart);
     }
 }
