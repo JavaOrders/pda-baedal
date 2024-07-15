@@ -7,7 +7,7 @@ import java.util.List;
 public class RestaurantDAO {
 
     //레스토랑 리스트를 해쉬맵으로 선언
-    HashMap<Integer, Restaurant> restaurantDB = new HashMap<>();
+    static final HashMap<Integer, Restaurant> restaurantDB = new HashMap<>();
 
     //가게를 저장할 함수
     public Restaurant save(Restaurant restaurant) {

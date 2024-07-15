@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import menu.Menu;
+import order.OrderController;
+import order.OrderView;
 import restaurant.Restaurant;
 import restaurant.RestaurantController;
 import restaurant.RestaurantView;
@@ -25,6 +27,7 @@ public class MainView {
     private final RestaurantView restaurantView;
     private final RestaurantController restaurantController;
     private final CartController cartController = new CartController();
+    private final OrderController orderController = new OrderController();
 
 
     public MainView(MainController mainController, RestaurantView restaurantView) {
@@ -70,11 +73,23 @@ public class MainView {
                         }
                         while(true) {
 //                            System.out.println("*****" + rest.getName()+" 음식점에 오신걸 환영합니다." + "*****");
+                            System.out.println("0번 주문하기");
                             System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
                             List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
                             restaurantView.printMenuList(menus);
                             userInput = Integer.parseInt(reader.readLine().trim());
-                            cartController.addMenu(menus.get(userInput-1),loginedId);
+                            if(userInput == 0) {
+                                //주문하기
+                                orderController.addOrder(loginedId);
+
+                                System.out.println("주문 성공");
+                                //TODO:
+                                exitProgram();
+                            }
+                            else {
+                                cartController.addMenu(menus.get(userInput-1),loginedId);
+                            }
+
                         }
 
 
