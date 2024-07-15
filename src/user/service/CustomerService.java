@@ -1,11 +1,13 @@
 package user.service;
 
-import Utils.Util;
+import utils.Util;
 import cart.Cart;
 import cart.CartService;
 import java.io.IOException;
 import user.UserDAO;
 import user.domain.Customer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class CustomerService {
     private final UserDAO userDAO = new UserDAO();
@@ -20,7 +22,8 @@ public class CustomerService {
         validateDuplicateUserId(userId);
         Cart initCart = cartService.createCart();
 
-        Customer newUser = new Customer(userId,userPassword,userName, initCart);
+        String encrptedPassword = encryptPassword(userPassword);
+        Customer newUser = new Customer(userId,encrptedPassword,userName, initCart);
 
         userDAO.save(newUser);
     }
@@ -34,6 +37,20 @@ public class CustomerService {
         return null;
     }
 
+    private String encryptPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            return null;
+        }
+    }
+
     private void validateDuplicateUserId(String userId) {
         Customer findCustomer = userDAO.findById(userId);
         if(findCustomer != null) {
@@ -41,8 +58,9 @@ public class CustomerService {
         }
     }
 
-    private static boolean isPasswordMatched(String password, Customer retrievedCustomer) {
-        return retrievedCustomer != null && retrievedCustomer.getPassword().equals(password);
+    private boolean isPasswordMatched(String password, Customer customer) {
+        String encryptedPassword = encryptPassword(password);
+        return encryptedPassword.equals(customer.getPassword());
     }
 
     public String getSuccessfulSignUpMessage() {

@@ -17,16 +17,16 @@ public class MainView {
     static final int LOGIN = 1;
     static final int SIGN_UP = 2;
     static final int EXIT = 3;
+    static final int GET_RESTAURANT_LIST = 1;
+    static final int ORDER = 0;
     static final String INIT_LOGINED_ID = "INIT_LOGINED_ID";
-
     static String loginedId = INIT_LOGINED_ID;
 
-
-    private final MainController mainController;
     private final RestaurantView restaurantView;
     private final RestaurantController restaurantController;
     private final CartController cartController = new CartController();
     private final OrderController orderController = new OrderController();
+
 
 
     public MainView(MainController mainController, RestaurantController restaurantController) {
@@ -62,32 +62,32 @@ public class MainView {
                     printRestaurantList();
 
                     userInput = Integer.parseInt(reader.readLine().trim());
-                    if (userInput == 1) {
-                        restaurantController.show();
-                        userInput = Integer.parseInt(reader.readLine().trim());
-                        Restaurant rest = restaurantController.showRestaurant(userInput);
 
-                        if (rest == null) {
+
+                    if (userInput == GET_RESTAURANT_LIST) {
+                        restaurantController.show();
+
+                        userInput = Integer.parseInt(reader.readLine().trim());
+                        Restaurant currentRestaurant = restaurantController.showRestaurant(userInput);
+
+                        if (currentRestaurant == null) {
                             System.out.println("해당 음식점은 존재하지 않습니다.");
                         }
                         while (true) {
-                            System.out.println("0번 주문하기");
-                            System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
-                            List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
-                            restaurantView.printMenuList(menus);
+                            printRestaurantIntro();
+                            List<Menu> currentRestaurantMenus = restaurantController.showMenusByRestaurantName(currentRestaurant.getName());
+                            restaurantView.printMenuList(currentRestaurantMenus);
                             userInput = Integer.parseInt(reader.readLine().trim());
-                            if (userInput == 0) {
-                                orderController.addOrder(loginedId);
 
+                            if (userInput == ORDER) {
+                                orderController.addOrder(loginedId);
                                 System.out.println("주문 성공");
                                 exitProgram();
                             } else {
-                                cartController.addMenu(menus.get(userInput - 1), loginedId);
+                                cartController.addMenu(currentRestaurantMenus.get(userInput - 1), loginedId);
                                 cartController.showMenuList(loginedId);
                             }
-
                         }
-
 
                     } else if (userInput == 2) {
                         exitProgram();
@@ -97,7 +97,11 @@ public class MainView {
                 e.printStackTrace();
             }
         }
+    }
 
+    private static void printRestaurantIntro() {
+        System.out.println("0번 주문하기");
+        System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
     }
 
     private static void singUp(BufferedReader reader, CustomerController customerController) throws IOException {
