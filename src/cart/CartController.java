@@ -6,18 +6,18 @@ public class CartController {
     private static final CartService cartService = new CartService();
     private static final CartView cartView = new CartView();
 
-    public void addMenu(Menu menu, Cart cart) {
-        boolean isMenuAdded = cartService.addMenu(menu, cart);
+    public void addMenu(Menu menu, String userId) {
+        boolean isMenuAdded = cartService.addMenu(menu, userId);
         cartView.displayMenuAddedMessage(isMenuAdded);
     }
 
-    public void clear(Cart cart) {
-        cartService.clear(cart);
+    public void clear(String userId) {
+        cartService.clear(userId);
         cartView.displayClearMessage();
     }
 
-    public void removeMenu(Menu menu, Cart cart) {
-        boolean isMenuRemoved = cartService.removeMenu(menu, cart);
+    public void removeMenu(Menu menu, String userId) {
+        boolean isMenuRemoved = cartService.removeMenu(menu, userId);
         cartView.displayMenuRemovedMessage(isMenuRemoved);
     }
 
