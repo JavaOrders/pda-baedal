@@ -2,17 +2,18 @@ package cart;
 
 import java.util.List;
 import menu.Menu;
+import restaurant.RestaurantDAO;
 import user.UserDAO;
 
 public class CartService {
     private static final CartDAO cartDAO = new CartDAO();
     private static final UserDAO userDAO = new UserDAO();
+    private static final RestaurantDAO restaurantDAO = new RestaurantDAO();
 
     public boolean addMenu(Menu menu, String userId) {
         Cart currentCart = getCartByUserId(userId);
         if (currentCart.getRestaurant() == null) {
             // TODO : 빈 카트일 경우 cart의 restaurant 필드를 해당 메뉴의 가게로 초기화
-            
         }
 
         if (isEqualRestaurant(menu, currentCart)) {
@@ -22,7 +23,7 @@ public class CartService {
         }
         return false;
     }
-
+    
     public boolean isEqualRestaurant(Menu menu, Cart cart) {
         String restaurantOfNewMenu = menu.getRestaurantName();
         String restaurantOfCartItems = cart
