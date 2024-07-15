@@ -6,9 +6,13 @@ import restaurant.Restaurant;
 import restaurant.RestaurantController;
 
 public class InitRestaurantMenu {
-    RestaurantController restaurantController;
+    private RestaurantController restaurantController;
 
-    InitRestaurantMenu() {
+    public RestaurantController getRestaurantController() {
+        return restaurantController;
+    }
+
+    public InitRestaurantMenu() {
         restaurantController = new RestaurantController();
     }
 
@@ -21,8 +25,27 @@ public class InitRestaurantMenu {
         menus.add(menu);
         Restaurant chaeyoonRestaurant = restaurantController.openRestaurant("chaeyoon", menus);
 
-        System.out.println(chaeyoonRestaurant.getName());
-        System.out.println(chaeyoonRestaurant.getMenus());
+        if (chaeyoonRestaurant == null) {
+            System.out.println("이미 존재하는 가게이름");
+        } else {
+            System.out.println(chaeyoonRestaurant.getName());
+            System.out.println(chaeyoonRestaurant.getMenus());
+        }
+
+        menus.clear();
+        menu.clear();
+        menu.put("짜장면", 5000);
+        menu.put("짬뽕", 4000);
+        menu.put("칼국수", 3000);
+        menus.add(menu);
+        chaeyoonRestaurant = restaurantController.openRestaurant("chaeyoon", menus);
+
+        if (chaeyoonRestaurant == null) {
+            System.out.println("이미 존재하는 가게이름");
+        } else {
+            System.out.println(chaeyoonRestaurant.getName());
+            System.out.println(chaeyoonRestaurant.getMenus());
+        }
 
         menus.clear();
         menu.clear();
@@ -35,9 +58,9 @@ public class InitRestaurantMenu {
         System.out.println(sooyeonRestaurant.getMenus());
 
         List<Restaurant> restaurants = restaurantController.showRestaurants();
-        for (int i = 0; i < restaurants.size(); ++i) {
-            System.out.println((i + 1) + "번: " + restaurants.get(i).getName() + "가게");
-        }
+//        for (int i = 0; i < restaurants.size(); ++i) {
+//            System.out.println((i + 1) + "번: " + restaurants.get(i).getName() + "가게");
+//        }
 
         int restaurantId = 0; // 채윤가게
         Restaurant restaurant = restaurantController.showRestaurant(restaurantId);
