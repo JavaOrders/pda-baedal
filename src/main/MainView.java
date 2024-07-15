@@ -1,33 +1,41 @@
 package main;
 
+import cart.CartController;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+import menu.Menu;
+import order.OrderController;
+import order.OrderView;
+import restaurant.Restaurant;
+import restaurant.RestaurantController;
 import restaurant.RestaurantView;
 import user.CustomerController;
 
 public class MainView {
 
-    //    static final int DISPLAY_RESTAURANT_LIST = 1;
-//    static final int DISPLAY_TOTAL_EXPENSE = 2;
     static final int LOGIN = 1;
     static final int SIGN_UP = 2;
     static final int EXIT = 3;
     static final String INIT_LOGINED_ID = "INIT_LOGINED_ID";
 
     static String loginedId = INIT_LOGINED_ID;
-    ;
+
 
     private final MainController mainController;
     private final RestaurantView restaurantView;
+    private final RestaurantController restaurantController;
+    private final CartController cartController = new CartController();
+    private final OrderController orderController = new OrderController();
+
 
     public MainView(MainController mainController, RestaurantView restaurantView) {
         this.mainController = mainController;
         this.restaurantView = restaurantView;
+        this.restaurantController = restaurantView.getRestaurantController();
     }
 
-
-    //TODO: RestaurantController.show
     public void show() {
         int userInput = 0;
 
@@ -38,7 +46,6 @@ public class MainView {
 
         while (true) {
             try {
-
                 if (loginedId == INIT_LOGINED_ID) {
                     printServiceList();
                     userInput = Integer.parseInt(reader.readLine().trim());
@@ -50,18 +57,44 @@ public class MainView {
                         singUp(reader, customerController);
 
                     } else if (userInput == EXIT) {
-                        System.exit(0);
+                        exitProgram();
                     }
                 } else {
-                    //로그인 된 경우 -> 여기 페이지 이름을 뭐라고 하죠?
-                    System.out.println("1. 음식점 리스트 보기");
-                    System.out.println("2. 종료");
+                    printRestaurantList();
+
                     userInput = Integer.parseInt(reader.readLine().trim());
                     if (userInput == 1) {
-                        System.out.println("1번 누름");
                         restaurantView.show();
+                        userInput = Integer.parseInt(reader.readLine().trim());
+                        Restaurant rest = restaurantController.showRestaurant(userInput);
+
+                        if(rest == null) {
+                            System.out.println("해당 음식점은 존재하지 않습니다.");
+                        }
+                        while(true) {
+//                            System.out.println("*****" + rest.getName()+" 음식점에 오신걸 환영합니다." + "*****");
+                            System.out.println("0번 주문하기");
+                            System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
+                            List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
+                            restaurantView.printMenuList(menus);
+                            userInput = Integer.parseInt(reader.readLine().trim());
+                            if(userInput == 0) {
+                                //주문하기
+                                orderController.addOrder(loginedId);
+
+                                System.out.println("주문 성공");
+                                //TODO:
+                                exitProgram();
+                            }
+                            else {
+                                cartController.addMenu(menus.get(userInput-1),loginedId);
+                            }
+
+                        }
+
+
                     } else if (userInput == 2) {
-                        System.out.println("2번 누름");
+                        exitProgram();
                     }
                 }
             } catch (Exception e) {
@@ -95,6 +128,10 @@ public class MainView {
         System.out.println(response);
     }
 
+    private static void exitProgram() {
+        System.exit(0);
+    }
+
     public static void printVisitIntro() {
         System.out.println("\u001B[34m*****************************************************\u001B[0m");
         System.out.println("\u001B[34m***                                             ***\u001B[0m");
@@ -111,6 +148,11 @@ public class MainView {
         System.out.println("2. 회원가입");
         System.out.println("3. 종료");
 
+    }
+
+    private static void printRestaurantList() {
+        System.out.println("1. 음식점 리스트 보기");
+        System.out.println("2. 종료");
     }
 
 

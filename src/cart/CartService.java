@@ -13,6 +13,7 @@ public class CartService {
 
     public boolean addMenu(Menu menu, String userId) {
         Cart currentCart = getCartByUserId(userId);
+
         if (currentCart.getRestaurant() == null) {
             updateRestaurantField(currentCart, menu.getRestaurantName());
         }
@@ -27,6 +28,7 @@ public class CartService {
 
     public Restaurant findRestaurantByName(String name) {
         List<Restaurant> restaurants = restaurantDAO.findAll();
+
         for (Restaurant restaurant : restaurants) {
             if (restaurant.getName().equals(name)) {
                 return restaurant;
@@ -43,6 +45,7 @@ public class CartService {
 
     public boolean isEqualRestaurant(Menu menu, Cart cart) {
         String restaurantOfNewMenu = menu.getRestaurantName();
+        if(cart.getRestaurant() == null ) return true;
         String restaurantOfCartItems = cart
                 .getRestaurant()
                 .getName();

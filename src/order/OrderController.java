@@ -7,8 +7,11 @@ public class OrderController {
     private final OrderView orderView = new OrderView();
     private final OrderService orderService = new OrderService();
 
-    public void addOrder(Cart cart, Customer customer) {
-        Order order = orderService.addOrder(cart, customer);
+    public void addOrder(String customerId) {
+
+        Order order = orderService.addOrder(customerId);
+        orderView.printOrder(order);
+
         if (order.getStatus()) {
             orderView.printOrder(order);
         } else {

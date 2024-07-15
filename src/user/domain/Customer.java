@@ -14,9 +14,9 @@ public class Customer extends Person {
     private String id;
     private String password;
 
-    public Customer(String id, String password, String name) {
+    public Customer(String id, String password, String name,Cart cart) {
         super(name, CUSTOMER);
-        myCart = new Cart();
+        myCart = cart;
         orderHistory = new ArrayList<Order>();
         this.id = id;
         this.password = password;

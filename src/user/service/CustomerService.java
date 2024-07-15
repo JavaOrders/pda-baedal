@@ -1,13 +1,15 @@
 package user.service;
 
 import Utils.Util;
+import cart.Cart;
+import cart.CartService;
 import java.io.IOException;
 import user.UserDAO;
-import user.UserView;
 import user.domain.Customer;
 
 public class CustomerService {
     private final UserDAO userDAO = new UserDAO();
+    private final CartService cartService = new CartService();
 
     public void signUp(String signUpInfo) {
         String[] userInfo = Util.inputSpliter(signUpInfo);
@@ -16,7 +18,9 @@ public class CustomerService {
         String userName = userInfo[2];
 
         validateDuplicateUserId(userId);
-        Customer newUser = new Customer(userId,userPassword,userName);
+        Cart initCart = cartService.createCart();
+
+        Customer newUser = new Customer(userId,userPassword,userName, initCart);
 
         userDAO.save(newUser);
     }

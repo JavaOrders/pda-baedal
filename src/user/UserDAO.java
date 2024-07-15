@@ -6,7 +6,7 @@ import user.domain.Customer;
 
 
 public class UserDAO {
-    private final Map<String, Customer> db = new HashMap<>();
+    private static final Map<String, Customer> db = new HashMap<>();
 
     public void save(Customer user) {
         db.put(user.getId(), user);
