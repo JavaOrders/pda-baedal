@@ -21,7 +21,7 @@ public class CartController {
         cartView.displayMenuRemovedMessage(isMenuRemoved);
     }
 
-    public void createCart(Cart cart) {
-        cartService.createCart(cart);
+    public Cart createCart() {
+        return cartService.createCart();
     }
 }

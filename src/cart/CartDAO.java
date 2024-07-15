@@ -10,7 +10,8 @@ public class CartDAO {
         return cartDB.get(System.identityHashCode(cart));
     }
 
-    public void save(Cart cart) {
+    public Cart save(Cart cart) {
         cartDB.put(System.identityHashCode(cart), cart);
+        return cart;
     }
 }
