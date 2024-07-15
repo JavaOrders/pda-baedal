@@ -1,5 +1,6 @@
 package main;
 
+import cart.CartController;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +24,8 @@ public class MainView {
     private final MainController mainController;
     private final RestaurantView restaurantView;
     private final RestaurantController restaurantController;
+    private final CartController cartController = new CartController();
+
 
     public MainView(MainController mainController, RestaurantView restaurantView) {
         this.mainController = mainController;
@@ -69,8 +72,9 @@ public class MainView {
 //                            System.out.println("*****" + rest.getName()+" 음식점에 오신걸 환영합니다." + "*****");
                             System.out.println("메뉴번호 입력 시 장바구니에 추가됩니다.");
                             List<Menu> menus = restaurantController.showMenusByRestaurantName(rest.getName());
-
                             restaurantView.printMenuList(menus);
+                            userInput = Integer.parseInt(reader.readLine().trim());
+                            cartController.addMenu(menus.get(userInput-1),loginedId);
                         }
 
 

@@ -26,6 +26,7 @@ public class CartService {
     
     public boolean isEqualRestaurant(Menu menu, Cart cart) {
         String restaurantOfNewMenu = menu.getRestaurantName();
+        if(cart.getRestaurant() == null ) return true;
         String restaurantOfCartItems = cart
                 .getRestaurant()
                 .getName();
@@ -66,6 +67,7 @@ public class CartService {
     }
 
     public Cart getCartByUserId(String userId) {
+        System.out.println(userDAO.findById(userId));
         return userDAO.findById(userId).getMyCart();
     }
 

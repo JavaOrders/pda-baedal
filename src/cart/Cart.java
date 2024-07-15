@@ -1,5 +1,6 @@
 package cart;
 
+import java.util.ArrayList;
 import java.util.List;
 import menu.Menu;
 import restaurant.Restaurant;
@@ -10,6 +11,7 @@ public class Cart {
     private int totalPrice;
 
     public Cart() {
+        this.menus = new ArrayList<Menu>();
     }
 
     public Cart(Restaurant restaurant, List<Menu> menus, int totalPrice) {
