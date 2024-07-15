@@ -3,27 +3,32 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import restaurant.RestaurantView;
 import user.CustomerController;
 
 public class MainView {
 
-//    static final int DISPLAY_RESTAURANT_LIST = 1;
+    //    static final int DISPLAY_RESTAURANT_LIST = 1;
 //    static final int DISPLAY_TOTAL_EXPENSE = 2;
     static final int LOGIN = 1;
     static final int SIGN_UP = 2;
     static final int EXIT = 3;
     static final String INIT_LOGINED_ID = "INIT_LOGINED_ID";
 
-    static String loginedId = INIT_LOGINED_ID; ;
+    static String loginedId = INIT_LOGINED_ID;
+    ;
 
     private final MainController mainController;
+    private final RestaurantView restaurantView;
 
-    public MainView(MainController mainController) {
+    public MainView(MainController mainController, RestaurantView restaurantView) {
         this.mainController = mainController;
+        this.restaurantView = restaurantView;
     }
 
+
     //TODO: RestaurantController.show
-    public static void main(String[] args) throws IOException {
+    public void show() {
         int userInput = 0;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -31,30 +36,37 @@ public class MainView {
 
         printVisitIntro();
 
-        while(true) {
-            if(loginedId == INIT_LOGINED_ID) {
-                printServiceList();
-                userInput = Integer.parseInt(reader.readLine().trim());
+        while (true) {
+            try {
 
-                if(userInput == LOGIN) {
-                    login(reader, customerController);
+                if (loginedId == INIT_LOGINED_ID) {
+                    printServiceList();
+                    userInput = Integer.parseInt(reader.readLine().trim());
 
-                }
-                else if (userInput == SIGN_UP) {
-                    singUp(reader, customerController);
+                    if (userInput == LOGIN) {
+                        login(reader, customerController);
 
+                    } else if (userInput == SIGN_UP) {
+                        singUp(reader, customerController);
+
+                    } else if (userInput == EXIT) {
+                        System.exit(0);
+                    }
+                } else {
+                    //로그인 된 경우 -> 여기 페이지 이름을 뭐라고 하죠?
+                    System.out.println("1. 음식점 리스트 보기");
+                    System.out.println("2. 종료");
+                    userInput = Integer.parseInt(reader.readLine().trim());
+                    if (userInput == 1) {
+                        System.out.println("1번 누름");
+                        restaurantView.show();
+                    } else if (userInput == 2) {
+                        System.out.println("2번 누름");
+                    }
                 }
-                else if (userInput == EXIT) {
-                    System.exit(0);
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else{
-                //로그인 된 경우 -> 여기 페이지 이름을 뭐라고 하죠?
-                System.out.println("1. 음식점 리스트 보기");
-                System.out.println("2. 종료");
-                userInput = Integer.parseInt(reader.readLine().trim());
-            }
-
         }
 
     }
@@ -77,7 +89,7 @@ public class MainView {
         String userPassword = reader.readLine();
 
         String response = customerController.login(userid, userPassword);
-        if(response.charAt(0) == 'S') {
+        if (response.charAt(0) == 'S') {
             loginedId = userid;
         }
         System.out.println(response);

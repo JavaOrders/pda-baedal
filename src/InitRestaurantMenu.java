@@ -6,9 +6,13 @@ import restaurant.Restaurant;
 import restaurant.RestaurantController;
 
 public class InitRestaurantMenu {
-    RestaurantController restaurantController;
+    private RestaurantController restaurantController;
 
-    InitRestaurantMenu() {
+    public RestaurantController getRestaurantController() {
+        return restaurantController;
+    }
+
+    public InitRestaurantMenu() {
         restaurantController = new RestaurantController();
     }
 
@@ -54,9 +58,9 @@ public class InitRestaurantMenu {
         System.out.println(sooyeonRestaurant.getMenus());
 
         List<Restaurant> restaurants = restaurantController.showRestaurants();
-        for (int i = 0; i < restaurants.size(); ++i) {
-            System.out.println((i + 1) + "번: " + restaurants.get(i).getName() + "가게");
-        }
+//        for (int i = 0; i < restaurants.size(); ++i) {
+//            System.out.println((i + 1) + "번: " + restaurants.get(i).getName() + "가게");
+//        }
 
         int restaurantId = 0; // 채윤가게
         Restaurant restaurant = restaurantController.showRestaurant(restaurantId);
