@@ -89,8 +89,8 @@
         </td>
         <td style="min-width: 150px;">
             <ul>
-              <li>레스토랑 조회</li>
-              <li>레스토랑에 해당하는 메뉴들 조회</li>
+              <li>음식점 조회</li>
+              <li>음식점에 해당하는 메뉴들 조회</li>
             </ul>
         </td>
         <td style="min-width: 150px;">
@@ -100,7 +100,8 @@
         </td>
         <td style="min-width: 150px;">
             <ul>
-              <li>작성 예정</li>
+              <li>판매 메뉴 목록을 가진 음식점 오픈 기능</li>
+              <li>음식점 조회</li>
             </ul>
         </td>
         <td style="min-width: 150px;">
